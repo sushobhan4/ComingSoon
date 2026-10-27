@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "kebabzilla"
-  }
+  },
+  "targets": {
+    "kebabzilla": {
+      "hosting": {
+        "coming-soon": [
+          "kebabzilla-coming-soon"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
