@@ -1,402 +1,79 @@
-/* ==========================================================================
-   KebabZilla - Coming Soon Page Stylesheet (Pure CSS - Zero JavaScript)
-   ========================================================================== */
-
-:root {
-  --color-bg-base: #0c1014;
-  --color-card-bg: rgba(18, 22, 28, 0.88);
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(230, 95, 43, 0.4);
-  
-  --color-text-main: #f5f7fa;
-  --color-text-muted: #9aa5b5;
-  --color-text-dim: #6c788a;
-
-  --color-ember-red: #c34226;
-  --color-ember-fire: #e2583e;
-  --color-ember-amber: #e59838;
-  
-  --glow-ember: rgba(226, 88, 62, 0.22);
-  --glow-amber: rgba(229, 152, 56, 0.16);
-
-  --radius-card: 28px;
-  --radius-pill: 9999px;
-  --radius-inner: 16px;
-
-  --font-family-base: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+@font-face {
+  font-family: "Serambhi Ramadhan";
+  src: url("fonts/SerambiRamadhan.ttf") format("truetype");
+  font-display: swap;
 }
 
-/* Box sizing and clean base */
-*, *::before, *::after {
-  box-sizing: border-box;
+@font-face {
+  font-family: "Serambi Ramadhan";
+  src: url("fonts/SerambiRamadhan.ttf") format("truetype");
+  font-display: swap;
+}
+
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-  font-family: var(--font-family-base);
-  background-color: var(--color-bg-base);
-  color: var(--color-text-main);
-  min-height: 100vh;
-  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow-x: hidden;
-  padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(24px + env(safe-area-inset-bottom, 0px));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* --------------------------------------------------------------------------
-   Background & Ambient Glowing Elements
-   -------------------------------------------------------------------------- */
-.bg-layer {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    linear-gradient(180deg, 
-      rgba(12, 16, 20, 0.72) 0%, 
-      rgba(12, 16, 20, 0.86) 45%, 
-      rgba(12, 16, 20, 0.96) 100%
-    ),
-    url('bgImage.jpg');
-  background-position: center center;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.6)),
+    url("bgImage.jpg") no-repeat center center;
   background-size: cover;
-  background-repeat: no-repeat;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.glow-orb {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.8;
-}
-
-.glow-top-right {
-  width: 440px;
-  height: 440px;
-  background: radial-gradient(circle, var(--glow-ember) 0%, transparent 70%);
-  top: -80px;
-  right: -80px;
-  animation: pulseGlow 10s ease-in-out infinite alternate;
-}
-
-.glow-bottom-left {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, var(--glow-amber) 0%, transparent 70%);
-  bottom: -120px;
-  left: -120px;
-  animation: pulseGlow 14s ease-in-out infinite alternate-reverse;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.15) translate(25px, 20px); }
-  100% { transform: scale(1) translate(0, 0); }
-}
-
-/* --------------------------------------------------------------------------
-   Container & Primary Glass Card
-   -------------------------------------------------------------------------- */
-.page-container {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 820px;
-  margin: 0 auto;
-}
-
-.holding-card {
-  background: var(--color-card-bg);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-card);
-  padding: 56px 48px;
+  background-color: #0c1014;
   text-align: center;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 
-    0 30px 80px rgba(0, 0, 0, 0.55),
-    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  padding: 24px 16px;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* --------------------------------------------------------------------------
-   Brand Header & Badge
-   -------------------------------------------------------------------------- */
-.brand-section {
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 32px;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 18px;
-  background: rgba(195, 66, 38, 0.15);
-  border: 1px solid rgba(226, 88, 62, 0.35);
-  border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #ffa18c;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 20px rgba(195, 66, 38, 0.18);
-}
-
-.pulsing-ember {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: var(--color-ember-fire);
-  box-shadow: 0 0 12px var(--color-ember-fire);
-  animation: emberBlink 1.8s infinite ease-in-out;
-}
-
-@keyframes emberBlink {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.4); }
-}
-
-.brand-title {
-  font-size: 3.2rem;
-  font-weight: 900;
-  letter-spacing: 0.06em;
-  line-height: 1.1;
-  color: #ffffff;
-}
-
-.brand-accent {
-  background: linear-gradient(135deg, var(--color-ember-fire) 0%, var(--color-ember-amber) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.brand-tagline {
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-text-dim);
-  margin-top: 8px;
-}
-
-/* --------------------------------------------------------------------------
-   Hero Headline & Content
-   -------------------------------------------------------------------------- */
-.hero-section {
-  margin-bottom: 40px;
-}
-
-.hero-headline {
-  font-size: 2.1rem;
-  font-weight: 800;
-  line-height: 1.25;
-  color: #ffffff;
-  margin-bottom: 18px;
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, #ffb347 0%, var(--color-ember-fire) 50%, var(--color-ember-amber) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.hero-description {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--color-text-muted);
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-/* --------------------------------------------------------------------------
-   Features / Highlights Grid
-   -------------------------------------------------------------------------- */
-.highlights-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-bottom: 42px;
-}
-
-.highlight-item {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-inner);
-  padding: 24px 18px;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
-}
-
-.highlight-item:hover {
-  transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.045);
-  border-color: var(--color-border-hover);
-}
-
-.highlight-icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
-  display: inline-block;
-  line-height: 1;
-}
-
-.highlight-title {
-  font-size: 1.02rem;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 8px;
-}
-
-.highlight-desc {
-  font-size: 0.85rem;
-  line-height: 1.5;
-  color: var(--color-text-muted);
-}
-
-/* --------------------------------------------------------------------------
-   Contact Card & Button
-   -------------------------------------------------------------------------- */
-.contact-card {
-  background: linear-gradient(135deg, rgba(195, 66, 38, 0.08) 0%, rgba(229, 152, 56, 0.05) 100%);
-  border: 1px solid rgba(226, 88, 62, 0.25);
-  border-radius: var(--radius-inner);
-  padding: 26px 24px;
-  margin-bottom: 32px;
-}
-
-.contact-subhead {
-  font-size: 0.95rem;
-  color: var(--color-text-muted);
-  margin-bottom: 14px;
-}
-
-.email-btn {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 12px 30px;
-  background: linear-gradient(135deg, var(--color-ember-fire) 0%, var(--color-ember-amber) 100%);
-  color: #ffffff;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 700;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 8px 24px rgba(226, 88, 62, 0.38);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  text-align: center;
+  user-select: none;
 }
 
-.email-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(226, 88, 62, 0.55);
-  filter: brightness(1.06);
-}
-
-.email-icon {
-  font-size: 1.15rem;
+.title {
+  font-family: "Serambhi Ramadhan", "Serambi Ramadhan", serif;
+  font-size: clamp(3.6rem, 13vw, 10rem);
+  font-weight: normal;
   line-height: 1;
-}
-
-/* --------------------------------------------------------------------------
-   Footer
-   -------------------------------------------------------------------------- */
-.card-footer {
-  border-top: 1px solid var(--color-border);
-  padding-top: 24px;
-}
-
-.card-footer p {
-  font-size: 0.84rem;
-  color: var(--color-text-dim);
+  color: #ffffff;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.85), 0 2px 10px rgba(0, 0, 0, 0.9);
   letter-spacing: 0.02em;
 }
 
-/* --------------------------------------------------------------------------
-   Responsive Breakpoints
-   -------------------------------------------------------------------------- */
-@media (max-width: 768px) {
-  .holding-card {
-    padding: 40px 24px;
-    border-radius: 22px;
-  }
-
-  .brand-title {
-    font-size: 2.5rem;
-  }
-
-  .hero-headline {
-    font-size: 1.65rem;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  .highlights-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-bottom: 32px;
-  }
-
-  .highlight-item {
-    padding: 20px 16px;
-  }
-
-  .desktop-break {
-    display: none;
-  }
+.tagline {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: clamp(1.1rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e23b20;
+  margin-top: clamp(10px, 2vw, 24px);
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85), 0 0 24px rgba(226, 59, 32, 0.45);
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 16px 12px;
-  }
-
-  .holding-card {
-    padding: 32px 18px;
-  }
-
-  .brand-title {
-    font-size: 2.1rem;
-  }
-
-  .brand-tagline {
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-  }
-
-  .badge {
-    font-size: 0.75rem;
-    padding: 6px 14px;
-  }
-
-  .hero-headline {
-    font-size: 1.4rem;
-  }
-
-  .email-btn {
-    width: 100%;
-    padding: 12px 20px;
-    font-size: 0.92rem;
-  }
+.coming-soon {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  font-size: clamp(0.9rem, 2vw, 1.4rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #eaeaea;
+  margin-top: clamp(14px, 2.5vw, 28px);
+  opacity: 0.92;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
