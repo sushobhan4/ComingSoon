@@ -1,9 +1,10 @@
 {
   "hosting": {
-    "site": "kebabzilla-holding",
+    "site": "kebabzilla-coming-soon",
     "public": ".",
     "ignore": [
       "firebase.json",
+      ".firebaserc",
       "**/.*",
       "README.md"
     ],
